@@ -122,7 +122,7 @@ class Node<T>{
 
 
 
-     public void remove(){
+     public T remove(){
 
 
       if(size == 0){
@@ -132,11 +132,11 @@ class Node<T>{
 
       if(head == tail)
       {
-
+            T data = head.data;
           head = null;
           tail = null;
           size = 0;
-          return;
+          return data;
       }
 
 
@@ -144,6 +144,7 @@ class Node<T>{
         node.prev.next = null;
         tail = node.prev;
         size--;
+        return node.data;
      }
 
      public void print(){
@@ -158,6 +159,17 @@ class Node<T>{
              node = node.next;
          }
 
+
+
+     }
+
+     public T getData(int index){
+
+         Node<T> node = head;
+         for(int i =1; i<index;i++){
+             node = node.next;
+         }
+         return node.data;
      }
 
 
