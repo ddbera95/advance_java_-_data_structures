@@ -172,6 +172,9 @@ class Node<T>{
 
      public T getData(int index){
 
+      if(index > size){
+          throw new RuntimeException("index is larger ");
+      }
          Node<T> node = head;
          for(int i =1; i<index;i++){
              node = node.next;
