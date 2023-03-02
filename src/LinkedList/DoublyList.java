@@ -75,7 +75,7 @@ class Node<T>{
       size++;
 
   }
-     public void removeAt(int index ){
+     public T removeAt(int index ){
 
 
         if(index > size){
@@ -93,14 +93,19 @@ class Node<T>{
 
          System.out.println(node.data + " removed" + " on index " + index);
 
-
+        if(tail == head || node == tail){
+            T data = head.data;
+            head = tail = null;
+            size--;
+            return data;
+        }
         if(node == tail){
 
             tail = node.prev;
             tail.next = null;
 
             size--;
-            return;
+            return node.data;
         }
 
 
@@ -109,14 +114,16 @@ class Node<T>{
             node.next.prev = null;
             head = node.next;
             size--;
-            return;
+            return node.data;
         }
 
 
          System.out.println("no ht");
         node.prev.next = node.next;
         node.next.prev  = node.prev;
+
         size--;
+        return node.data;
 
      }
 
