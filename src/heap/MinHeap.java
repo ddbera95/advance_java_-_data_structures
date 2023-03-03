@@ -29,7 +29,35 @@ public class MinHeap<T extends Comparable> {
 
     }
 
+    MinHeap(T[] arr , int d){
+        this.d = Math.max(2, d);
+        this.sz = arr.length;
+        this.max_size = arr.length*2;
+        this.arr = (T[])new Comparable[max_size];
+        child = new int[max_size];
+        parent = new int[max_size];
 
+        for(int i = 0;i<max_size;i++){
+            child[i] = i*d+1;
+            parent[i] = (i-1)/d;
+        }
+        for(int i =0; i<arr.length ; i++){
+            this.arr[i] = arr[i];
+        }
+        heapify();
+    }
+
+        public void heapify(){
+
+            for(int i = (sz/d -1) ; i>= 0 ; i--){
+
+
+               //for(int j = 2; j<=d ; j++){
+                   sink(i);
+                   //swim(i);
+               //}
+            }
+        }
 
     public int size(){
         return sz;
@@ -117,6 +145,15 @@ public class MinHeap<T extends Comparable> {
         T temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
+    }
+
+    public void print(){
+        int t = sz;
+        for(int i = 0 ; i<t;i++){
+
+            System.out.println(remove());
+
+        }
     }
 
 
