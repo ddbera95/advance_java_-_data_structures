@@ -1,18 +1,25 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.ListIterator;
+import PIngCommand.CreateIpFile;
+
+import java.util.*;
+import java.util.function.Predicate;
 
 public class Main {
 
 
 
         public static void main(String[] args) {
-            ArrayList<Integer> arr;
 
 
+         //   CreateIpFile cp = new CreateIpFile();
 
 
+            /*ArrayList<Integer> arr;
+
+            Optional<Integer> optional = Optional.ofNullable(null);
+
+
+            Predicate<Integer> p= i->i%2 ==0;
+            System.out.println(p.test(30));
 
 
 
@@ -30,7 +37,7 @@ public class Main {
                     //break;
 //System.out.println("harsh : "+arr);
                 }
-
+*/
             }
 
 
@@ -50,7 +57,7 @@ public class Main {
             {
                 System.out.print(itr1.next()+" ");
             }*/
-        }
+
 
 }
 
