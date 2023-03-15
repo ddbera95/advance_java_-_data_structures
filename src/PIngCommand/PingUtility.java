@@ -57,26 +57,52 @@ public class PingUtility {
 
            }
 
-           ProcessBuilder pb = new ProcessBuilder(command);
+           ProcessBuilder processBuilder = new ProcessBuilder(command);
 
-           pb.redirectError(new File("/home/dhaval/Ping/output.txt"));
+           processBuilder.redirectError(new File("/home/dhaval/Ping/output.txt"));
 
-           Process process = pb.start();
 
-           process.waitFor();
+           Process process = processBuilder.start();
 
-           BufferedReader outputError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+           int processCode = 0;
 
-           String OutputLine;
-
-           System.out.println("Errors");
-
-           while((OutputLine = outputError.readLine()) != null)
+           try
            {
 
-               System.out.println(OutputLine);
+               processCode =  process.waitFor();
+
 
            }
+
+           catch (InterruptedException proceeInteruptException)
+           {
+
+               System.out.println(proceeInteruptException.getMessage());
+
+                   return;
+           }
+
+           if(processCode == 1)
+           {
+
+                processBuilder.redirectErrorStream(true);
+
+                return;
+
+           }
+
+               BufferedReader processErrorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+
+               String ErrorLine;
+
+               while (( ErrorLine = processErrorReader.readLine()) != null)
+               {
+
+                   System.out.println(ErrorLine);
+
+               }
+
+
 
        }
        catch (IOException e)
@@ -89,12 +115,7 @@ public class PingUtility {
            return;
 
        }
-       catch (Exception e)
-       {
 
-           System.out.println("interupted Exception");
-
-       }
 
 
 
@@ -106,7 +127,7 @@ public class PingUtility {
 
        check.CheckUpIPList("/home/dhaval/Ping/ping.txt");
 
-        System.out.println("exiting ____________________-");
+       System.out.println("exiting ____________________-");
 
     }
 
