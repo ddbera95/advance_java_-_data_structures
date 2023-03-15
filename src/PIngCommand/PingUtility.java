@@ -91,17 +91,23 @@ public class PingUtility {
 
            }
 
-               BufferedReader processErrorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+              try( BufferedReader processErrorReader = new BufferedReader(new InputStreamReader(process.getErrorStream())))
+              {
 
-               String ErrorLine;
+                  String ErrorLine;
 
-               while (( ErrorLine = processErrorReader.readLine()) != null)
-               {
+                  while ((ErrorLine = processErrorReader.readLine()) != null) {
 
-                   System.out.println(ErrorLine);
+                      System.out.println(ErrorLine);
 
-               }
+                  }
+              }
+              catch (IOException readerIoException)
+              {
 
+                  System.out.println(readerIoException);
+
+              }
 
 
        }
@@ -113,6 +119,10 @@ public class PingUtility {
            System.out.println("please enter the right Input , please try again with valid Path input \n");
 
            return;
+
+       }
+       finally {
+
 
        }
 
